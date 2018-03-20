@@ -52,11 +52,11 @@
       become: yes
 
 # step 2: setup/install mysql db
-    - name: install billing_db into mysql
+    - name: install billing table into mysql
       mysql_db:
         login_user: "{{ username }}"
         login_password: "{{ mysql_password }}"
-        name: billing
+        name: colte_db
         state: import
         target: "{{ webservices_dir }}/billing/customer_db.sql"
 
@@ -69,6 +69,13 @@
         # job: "{{ webservices_dir }}/billing/cronscript.sh > {{ colte_dir }}/logs/import_to_db.log 2>&1"
         #user: "admin"
         #disabled: "no"
+
+    # - name: copy coltenv to $HOME (needed for cron scripts)
+    #   copy: 
+    #     src: "{{ colte_dir }}/coltenv"
+    #     dest: /usr/local/etc/colte/coltenv
+    #     mode: 0644
+    #   become: yes
 
 # job must:
 # 1: run the lua script to dump out all the new values to a specific file (i can do this with curl) (can i do this with python?)

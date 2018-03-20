@@ -1,8 +1,9 @@
 #!/bin/bash
 
 if [ -z "$COLTENV" ]; then
-    echo "ERROR: You must configure and run $COLTE_DIR/coltenv first!"
-    exit 1
+    echo "WARNING: Using default values from $COLTE_DIR/coltenv. Make sure you check them out!"
+    SOURCEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    source $SOURCEDIR/../../coltenv
 fi
 
 # Step 1: Install prereqs (ansible and python)
@@ -19,7 +20,7 @@ sudo cp $COLTE_DIR/system_setup/debian-9.3/sources/sources.list /etc/apt/sources
 sudo apt-get update
 
 sudo apt-get -y install vim curl
-ansible-playbook -v -i "localhost," -c local $COLTE_DIR/system_setup/debian-9.3/main_playbook.yml 
+ansible-playbook -K -v -i "localhost," -c local $COLTE_DIR/system_setup/debian-9.3/main_playbook.yml 
 
 # Step 3: Any final-final configs?!? Setting IP addresses in config files, etc?!?
 
