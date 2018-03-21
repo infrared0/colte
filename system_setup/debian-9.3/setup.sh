@@ -11,6 +11,11 @@ sudo cp $COLTE_DIR/system_setup/debian-9.3/sources/ansible_sources.list /etc/apt
 sudo apt-get update
 sudo apt-get install -y --allow-unauthenticated ansible python2.7
 
+# Install pip for flask webserver
+sudo apt-get install -y --allow-unauthenticated python-pip
+pip install flask
+#FLASK_APP="fake_receiver.py" python -m flask run &
+
 #sudo add-apt-repository -y ppa:ansible/ansible-2.4
 #sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
 #sudo apt-get update
