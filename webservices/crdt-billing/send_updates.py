@@ -8,7 +8,7 @@ import os
 ######### Get environment variables and args:
 
 neighbors_file = '/home/vagrant/epc-fork-colte/webservices/crdt-billing/neighbor_epc.json'
-#neighbors_file = 'test_neighbor.json'
+#neighbors_file = '/home/vagrant/epc-fork-colte/webservices/crdt-billing/test/test_neighbor.json'
 
 ########## Set up DB connection:
 

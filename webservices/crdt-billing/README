@@ -1,0 +1,16 @@
+use balance.py to get balance: 
+python balance.py IMSI
+
+use add_spend_credit.py to trigger database update: 
+python add_spend_credit.py $AMOUNT $RECIPIENT_IMSI $MY_NAME $MY_BTS_ID
+
+use send_updates.py to manually send all current db entries that haven't been broadcast yet.
+
+add the line from install_scripts/crontab.bak to the crontab file:
+crontab -e
+(then edit the file)
+
+receive_updates.py should run whenever the flask webserver receives a database update.
+customer_db.sql runs on startup but initializes only a test table.
+the flask webserver should start on startup (via setup.sh).
+
