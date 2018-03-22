@@ -14,6 +14,7 @@ sudo apt-get install -y --allow-unauthenticated ansible python2.7
 # Install pip for flask webserver
 sudo apt-get install -y --allow-unauthenticated python-pip
 pip install flask
+pip install requests
 #FLASK_APP="fake_receiver.py" python -m flask run &
 
 #sudo add-apt-repository -y ppa:ansible/ansible-2.4
@@ -26,6 +27,9 @@ sudo apt-get update
 
 sudo apt-get -y install vim curl
 ansible-playbook -K -v -i "localhost," -c local $COLTE_DIR/system_setup/debian-9.3/main_playbook.yml 
+
+# Run Flask server for CRDT billing
+FLASK_APP="$COLTE_DIR/webservices/crdt-billing/webserver/receiver.py" python -m flask run
 
 # Step 3: Any final-final configs?!? Setting IP addresses in config files, etc?!?
 

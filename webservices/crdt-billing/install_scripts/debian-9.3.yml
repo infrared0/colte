@@ -60,12 +60,7 @@
         state: import
         target: "{{ webservices_dir }}/crdt-billing/customer_db.sql"
 
-# step 3: run flask webserver for sync with another bts
-# TODO Placeholder. command needs to run: 
-# FLASK_APP="fake_receiver.py" python -m flask run
-#
-
-# step 4: schedule chron job for "import_to_db.py"
+# step 3: schedule chron job for "import_to_db.py"
 #    - name: Install job on crontab
 #      cron:
 #        name: "Import bandwidth numbers from ntopng to billing db"
