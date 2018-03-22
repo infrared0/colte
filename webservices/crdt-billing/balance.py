@@ -27,10 +27,12 @@ def query_db(imsi):
     try:
         cursor.execute(query_str)
         result = cursor.fetchone()
-        balance = "Balance for user with IMSI '" + imsi + "' is {}.".format(float(result[0]))
+        balance = float(result[0])
+        #print "Balance for user with IMSI '" + imsi + "' is {}.".format(balance)
     except MySQLdb.Error, e:
         #print e
-        balance = "Error: User not found."
+        print "Error: User not found."
+        balance = 0
 
 
     ########## Close out everything
