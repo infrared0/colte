@@ -1,13 +1,13 @@
 import MySQLdb
 
 import sys
-sys.path.insert(0, 'webserver')
+sys.path.insert(0, '/home/vagrant/epc-fork-colte/webservices/crdt-billing/webserver')
 import sender
 import os
 
 ######### Get environment variables and args:
 
-neighbors_file = 'neighbor_epc.json'
+neighbors_file = '/home/vagrant/epc-fork-colte/webservices/crdt-billing/neighbor_epc.json'
 #neighbors_file = 'test_neighbor.json'
 
 ########## Set up DB connection:
@@ -18,12 +18,12 @@ db = MySQLdb.connect(host="localhost",
 		    db="crdt_db")
 
 #db = MySQLdb.connect(host="localhost",
-#                    user="colte",
+#                    user="root",
 #                    passwd="correcthorsebatterystaple",
 #		    db="crdt_db")
 
 #db = MySQLdb.connect(host="localhost",
-#                    user="root",
+#                    user="colte",
 #                    passwd="correcthorsebatterystaple",
 #		    db="crdt_db")
 
@@ -52,7 +52,7 @@ for imsi in customers:
         sender_id = entry[3]
         bts_id = entry[4]
         sent = entry[5]
-        to_send = sender.formatUpdate(timestamp, bts_id, user_imsi, sender_id, amount, sent) 
+        to_send = sender.formatUpdate(timestamp, amount, user_imsi, sender_id, bts_id, sent) 
         s.broadcast(to_send)
 
     update_sent = ("UPDATE `" + imsi + "` SET sent = 1 WHERE sent = 0")

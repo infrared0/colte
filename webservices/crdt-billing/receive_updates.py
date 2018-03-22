@@ -10,15 +10,15 @@ import MySQLdb
 def update_db(update):
     (timestamp, amount, imsi, sender_id, bts_id, sent) = update
 
-    #db = MySQLdb.connect(host="localhost",
-    #                    user="vagrant",
-    #                    passwd="correcthorsebatterystaple",
-    #		        db="crdt_db")
-    
     db = MySQLdb.connect(host="localhost",
-                        user="root",
+                        user="vagrant",
                         passwd="correcthorsebatterystaple",
     		        db="crdt_db")
+    
+    #db = MySQLdb.connect(host="localhost",
+    #                    user="root",
+    #                    passwd="correcthorsebatterystaple",
+    #		        db="crdt_db")
 
     #db = MySQLdb.connect(host="localhost",
     #                    user="colte",
@@ -40,7 +40,7 @@ def update_db(update):
     ) ENGINE=MyISAM DEFAULT CHARSET=latin1;"
     cursor.execute(create_table_str)
     
-    insert_str = "INSERT INTO `" + imsi + "` VALUES ({}, {}, {}, {}, {}, {})".format(timestamp, amount, imsi, sender_id, bts_id, sent)
+    insert_str = "INSERT INTO `" + imsi + "` VALUES ({}, {}, {}, '{}', {}, {})".format(timestamp, amount, imsi, sender_id, bts_id, sent)
     try:
         cursor.execute(insert_str)
     except MySQLdb.Error, e:
@@ -58,6 +58,6 @@ def update_db(update):
 
 if __name__ == "__main__":
     #DEBUG get the info from Matt's receiver
-    dummy_update_list = [("1", "10", "123451234512345", "'infrared'", "1", "1"), ("10", "-10", "123451234512345", "'infrared'", "1", "0"),("5", "200", "123331234512345", "'spencer'", "1", "0")]
+    dummy_update_list = [("1", "10", "123451234512345", "infrared", "1", "1"), ("10", "-10", "123451234512345", "infrared", "1", "0"),("5", "200", "123331234512345", "spencer", "1", "0")]
     for up in dummy_update_list:
         update_db(up)

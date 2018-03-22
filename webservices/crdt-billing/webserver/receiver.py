@@ -17,10 +17,10 @@ def hello():
     if request.method == "POST":
         try:
             crdt_data = json.loads(request.data.decode("utf8"))
-            callback((crdt_data["timestamp"], crdt_data["bts_id"], crdt_data["imsi"], crdt_data["sender_id"],
-                         crdt_data["amount"], "1")) # always set "sent" to 1 when receiving from another bts
-            print("Got a request with", crdt_data["timestamp"], crdt_data["bts_id"], crdt_data["imsi"], crdt_data["sender_id"],
-                         crdt_data["amount"], "1")
+            callback((crdt_data["timestamp"], crdt_data["amount"], crdt_data["imsi"], crdt_data["sender_id"],
+                         crdt_data["bts_id"], "1")) # always set "sent" to 1 when receiving from another bts
+            print("Got a request with", crdt_data["timestamp"], crdt_data["amount"], crdt_data["imsi"], crdt_data["sender_id"],
+                         crdt_data["bts_id"], "1")
         except TypeError as e:
             print("Failed to decode json string")
             raise e
@@ -28,3 +28,5 @@ def hello():
         print("got a get")
 
     return "Received DB Update"
+
+app.run(host="0.0.0.0", port=int("5000"), debug=True)

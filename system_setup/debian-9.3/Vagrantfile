@@ -3,36 +3,9 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.define "epc" do |epc|
+  config.vm.define "epc1" do |epc1|
     epc.vm.box = "bento/debian-9.3"
-#    config.vm.network "private_network", ip: "192.168.33.10", auto_config: false
-#    config.vm.provision 'shell', inline: "ifconfig eth0 192.168.33.10"
-
-    epc.vm.network "private_network", ip: "10.0.101.3"
-    #epc.vm.network "private_network", ip: "10.0.101.3", auto_config: false
-    #epc.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-    #epc.vm.provision 'shell', inline: "ip addr add 10.0.101.3 dev enp0s3", run: "always"
-    #
-    ##################
-    #epc.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-    #epc.vm.provision 'shell', inline: "ifconfig enp0s3 10.0.101.3", run: "always"
-# IDEALLY, this is the only line we need to write. In practice, the combo of
-# Vagrant + Ubuntu > 15.10 has unresolved net config issues, unclear why.
-#    epc.vm.network "private_network", ip: "10.0.101.3", auto_config: false
-#    epc.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'
-#    epc.vm.rpvision 'shell', inline: "ifconfig eth1 10.0.101.3", run: "always"
-#    epc.vm.network "public_network", ip: "10.0.200.3"
-
-# (If the issues ever get resolved, delete the lines below this comment)
-     #epc.vm.provision 'shell', inline: "ifconfig eth1 up"
-     #epc.vm.network "private_network", ip: "10.0.101.3", auto_config: false
-     #epc.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-     #epc.vm.provision 'shell', inline: "ifconfig eth1 10.0.101.3", run: "always"
-
-#   epc.vm.network "public_network", ip: "10.0.200.3", auto_config: false
-#   epc.vm.provision 'shell', inline: "ifconfig eth2 10.0.200.3", run: "always"
-    #
-    #   clone epc from Esther's minimal fork of colte
+    epc.vm.network "private_network", ip: "192.168.101.3"
 
     epc.vm.network "forwarded_port", guest: 80, host: 8080
 
@@ -42,37 +15,11 @@ Vagrant.configure("2") do |config|
       chown -R vagrant:vagrant /home/vagrant/colte
     SHELL
 
-#    epc.vm.provision "ansible" do |ansible|
-#      ansible.playbook = "ansible/vagrant_playbook.yml"
-#    end
   end
 
-  config.vm.define "epc1" do |epc1|
+  config.vm.define "epc2" do |epc2|
     epc1.vm.box = "bento/debian-9.3"
-#    config.vm.network "private_network", ip: "192.168.33.10", auto_config: false
-#    config.vm.provision 'shell', inline: "ifconfig eth1 192.168.33.10"
-
-    epc1.vm.network "private_network", ip: "10.0.101.4"
-    #epc1.vm.network "private_network", ip: "10.0.101.4", auto_config: false
-    #epc1.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-    #epc1.vm.provision 'shell', inline: "ip addr add 10.0.101.4 dev enp0s3", run: "always"
-# IDEALLY, this is the only line we need to write. In practice, the combo of
-# Vagrant + Ubuntu > 15.10 has unresolved net config issues, unclear why.
-#    epc1.vm.network "private_network", ip: "10.0.101.3", auto_config: false
-#    epc1.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'
-#    epc1.vm.rpvision 'shell', inline: "ifconfig eth1 10.0.101.3", run: "always"
-#    epc1.vm.network "public_network", ip: "10.0.200.3"
-
-# (If the issues ever get resolved, delete the lines below this comment)
-     #epc1.vm.provision 'shell', inline: "ifconfig eth1 up"
-     #epc1.vm.network "private_network", ip: "10.0.101.3", auto_config: false
-     #epc1.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-     #epc1.vm.provision 'shell', inline: "ifconfig eth1 10.0.101.3", run: "always"
-
-#   epc1.vm.network "public_network", ip: "10.0.200.3", auto_config: false
-#   epc1.vm.provision 'shell', inline: "ifconfig eth2 10.0.200.3", run: "always"
-    #
-    #   clone epc1 from Esther's minimal fork of colte
+    epc1.vm.network "private_network", ip: "192.168.101.4"
 
     epc1.vm.network "forwarded_port", guest: 80, host: 8081
 
@@ -82,9 +29,6 @@ Vagrant.configure("2") do |config|
       chown -R vagrant:vagrant /home/vagrant/colte
     SHELL
 
-#    epc1.vm.provision "ansible" do |ansible|
-#      ansible.playbook = "ansible/vagrant_playbook.yml"
-#    end
   end
 
 end

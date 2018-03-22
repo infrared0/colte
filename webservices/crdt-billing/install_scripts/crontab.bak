@@ -1,0 +1,1 @@
+*/10 * * * * python /home/vagrant/colte/webservices/crdt-billing/send_updates.py > /home/vagrant/colte/webservices/crdt-billing/job-fail.log 2>&1

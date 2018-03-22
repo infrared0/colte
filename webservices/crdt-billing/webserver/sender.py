@@ -14,8 +14,8 @@ class Sender(object):
             print requests.post(dest, data).text
 
 
-def formatUpdate(timestamp, bts_id, imsi, sender_id, amount, sent):
-    transport_collection = {"timestamp": timestamp, "bts_id": bts_id, "imsi": imsi, "sender_id": sender_id, "amount": amount, "sent": sent}
+def formatUpdate(timestamp, amount, imsi, sender_id, bts_id, sent):
+    transport_collection = {"timestamp": timestamp, "amount": amount, "imsi": imsi, "sender_id": sender_id, "bts_id": bts_id, "sent": sent}
     return json.dumps(transport_collection)
 
 
