@@ -7,20 +7,25 @@ import os
 
 ######### Get environment variables and args:
 
-#neighbors_file = 'neighbor_epc.json'
-neighbors_file = 'test_neighbor.json'
+neighbors_file = 'neighbor_epc.json'
+#neighbors_file = 'test_neighbor.json'
 
 ########## Set up DB connection:
+
+db = MySQLdb.connect(host="localhost",
+                    user="vagrant",
+                    passwd="correcthorsebatterystaple",
+		    db="crdt_db")
 
 #db = MySQLdb.connect(host="localhost",
 #                    user="colte",
 #                    passwd="correcthorsebatterystaple",
 #		    db="crdt_db")
 
-db = MySQLdb.connect(host="localhost",
-                    user="root",
-                    passwd="correcthorsebatterystaple",
-		    db="crdt_db")
+#db = MySQLdb.connect(host="localhost",
+#                    user="root",
+#                    passwd="correcthorsebatterystaple",
+#		    db="crdt_db")
 
 cursor = db.cursor()
 

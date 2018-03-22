@@ -7,4 +7,4 @@
 # - import_playbook: "{{ playbook_dir }}/../../emergency_webservices/install_scripts/debian-9.3.yml"
 - import_playbook: "{{ playbook_dir }}/../../webservices/node/install_scripts/debian-9.3.yml"
 - import_playbook: "{{ playbook_dir }}/../../webservices/billing/install_scripts/debian-9.3.yml"
-  #- import_playbook: "{{ playbook_dir }}/../../webservices/crdt-billing/install_scripts/debian-9.3.yml"
+- import_playbook: "{{ playbook_dir }}/../../webservices/crdt-billing/install_scripts/debian-9.3.yml"

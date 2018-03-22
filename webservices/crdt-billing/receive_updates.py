@@ -10,15 +10,21 @@ import MySQLdb
 def update_db(update):
     (timestamp, amount, imsi, sender_id, bts_id, sent) = update
 
+    db = MySQLdb.connect(host="localhost",
+                        user="vagrant",
+                        passwd="correcthorsebatterystaple",
+    		        db="crdt_db")
+    
+    #db = MySQLdb.connect(host="localhost",
+    #                    user="root",
+    #                    passwd="correcthorsebatterystaple",
+    #		        db="crdt_db")
+
     #db = MySQLdb.connect(host="localhost",
     #                    user="colte",
     #                    passwd="correcthorsebatterystaple",
     #		    db="crdt_db")
-    db = MySQLdb.connect(host="localhost",
-                        user="root",
-                        passwd="correcthorsebatterystaple",
-    		        db="crdt_db")
-    
+
     cursor = db.cursor()
     
     ########### Perform DB Updates:

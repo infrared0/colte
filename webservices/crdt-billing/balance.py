@@ -9,15 +9,21 @@ import sys
 
 def query_db(imsi):
 
+    db = MySQLdb.connect(host="localhost",
+                        user="vagrant",
+                        passwd="correcthorsebatterystaple",
+    		        db="crdt_db")
+    
+    #db = MySQLdb.connect(host="localhost",
+    #                    user="root",
+    #                    passwd="correcthorsebatterystaple",
+    #		        db="crdt_db")
+    
     #db = MySQLdb.connect(host="localhost",
     #                    user="colte",
     #                    passwd="correcthorsebatterystaple",
     #		    db="crdt_db")
-    db = MySQLdb.connect(host="localhost",
-                        user="root",
-                        passwd="correcthorsebatterystaple",
-    		        db="crdt_db")
-    
+
     cursor = db.cursor()
     
     ########### Perform DB Query:
