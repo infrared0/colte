@@ -1,23 +1,18 @@
 import MySQLdb
 import sys
 
-######### Get environment variables and args:
-
-
-########## Set up DB connection:
-
-
 def query_db(imsi):
 
-    db = MySQLdb.connect(host="localhost",
-                        user="vagrant",
-                        passwd="correcthorsebatterystaple",
-    		        db="crdt_db")
-    
+    ########## Set up DB connection:
     #db = MySQLdb.connect(host="localhost",
-    #                    user="root",
+    #                    user="vagrant",
     #                    passwd="correcthorsebatterystaple",
     #		        db="crdt_db")
+    
+    db = MySQLdb.connect(host="localhost",
+                        user="root",
+                        passwd="correcthorsebatterystaple",
+    		        db="crdt_db")
     
     #db = MySQLdb.connect(host="localhost",
     #                    user="colte",
@@ -29,9 +24,14 @@ def query_db(imsi):
     ########### Perform DB Query:
 
     query_str = "SELECT sum(amount) from `" + imsi + "`"
-    cursor.execute(query_str)
-    result = cursor.fetchone()
-    balance = "New balance for user with IMSI '" + imsi + "' is {}.".format(float(result[0]))
+    try:
+        cursor.execute(query_str)
+        result = cursor.fetchone()
+        balance = "Balance for user with IMSI '" + imsi + "' is {}.".format(float(result[0]))
+    except MySQLdb.Error, e:
+        #print e
+        balance = "Error: User not found."
+
 
     ########## Close out everything
     
